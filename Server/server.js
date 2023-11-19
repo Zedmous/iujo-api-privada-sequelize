@@ -9,6 +9,7 @@ class Server {
         this.pre = "/api";
         this.paths = {
             auths:this.pre+'/auth',
+            roles:this.pre+'/roles',
             users: this.pre + '/users',
             companies: this.pre + '/companies'
         };

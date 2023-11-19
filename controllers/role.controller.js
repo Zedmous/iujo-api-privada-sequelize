@@ -1,29 +1,22 @@
 const { response, request } = require("express");
-const bcryptjs = require('bcryptjs');
-const { UserModel } = require("../utils/sequelize.utils");
+const { RoleModel } = require("../utils/sequelize.utils");
 
-class UserController {
-
-  constructor(){}
-  
+class RoleController {
   create = async (req = request, res = response) => {
     try {
-      const salt = bcryptjs.genSaltSync();
-      password = bcryptjs.hashSync(password, salt);
-      const user = await UserModel.create({
+      const role = await RoleModel.create({
         ...req.body,
-        password
       });
-      return res.status(201).json(user);
+      return res.status(201).json(role);
     } catch (error) {
       throw new error();
     }
   };
   getAll = async (req = request, res = response) => {
     try {
-      const users = await UserModel.findAll();
-      let total = users.length;
-      return res.status(200).json({ total, users });
+      const roles = await RoleModel.findAll();
+      let total = roles.length;
+      return res.status(200).json({ total, roles });
     } catch (error) {
       throw new error();
     }
@@ -31,8 +24,8 @@ class UserController {
   getOne = async (req = request, res = response) => {
     const { id } = req.params;
     try {
-      const user = await UserModel.findByPk(Number(id));
-      return res.status(200).json(user);
+      const role = await RoleModel.findByPk(Number(id));
+      return res.status(200).json(role);
     } catch (error) {
       throw new error();
     }
@@ -41,14 +34,9 @@ class UserController {
   update = async (req = request, res = response) => {
     const { id } = req.params;
     try {
-      const { password, ...body } = req.body;
-      if (password) {
-        const salt = bcryptjs.genSaltSync();
-        body.password = bcryptjs.hashSync(password, salt);
-      }
-      const user = await UserModel.update(
+      const role = await RoleModel.update(
         {
-          ...body,
+          ...req.body,
         },
         {
           where: {
@@ -56,7 +44,7 @@ class UserController {
           },
         }
       );
-      return res.status(20).json(user);
+      return res.status(20).json(role);
     } catch (error) {
       throw new error();
     }
@@ -64,7 +52,7 @@ class UserController {
   reactivate = async (req = request, res = response) => {
     const { id } = req.params;
     try {
-      const user = await UserModel.update(
+      const role = await RoleModel.update(
         {
           status: false,
           deletedAt: null,
@@ -75,7 +63,7 @@ class UserController {
           },
         }
       );
-      return res.status(200).json(user);
+      return res.status(200).json(role);
     } catch (error) {
       throw new error();
     }
@@ -83,7 +71,7 @@ class UserController {
   delete = async (req = request, res = response) => {
     const { id } = req.params;
     try {
-      const user = await UserModel.update(
+      const role = await RoleModel.update(
         {
           status: true,
           deletedAt: new Date(),
@@ -94,13 +82,12 @@ class UserController {
           },
         }
       );
-      return res.status(200).json(user);
+      return res.status(200).json(role);
     } catch (error) {
       throw new error();
     }
   };
 }
-
 module.exports = {
-  UserController,
+  RoleController,
 };

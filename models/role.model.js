@@ -8,6 +8,8 @@ const RoleModel = {
   },
   name: {
     type: DataTypes.STRING(50),
+    allowNull: false,
+    unique: true,
   },
   deletedAt: {
     type: DataTypes.DATE,
