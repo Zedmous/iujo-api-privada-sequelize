@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const { CompanyController } = require("../controllers/company.controller");
 const router = Router();
-
 const companyController = new CompanyController();
 router.post("/", companyController.create);
 

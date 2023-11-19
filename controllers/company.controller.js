@@ -18,7 +18,7 @@ class CompanyController {
       let total = companies.length;
       return res.status(200).json({ total, companies });
     } catch (error) {
-      throw new error;
+      throw new error();
     }
   };
   getOne = async (req = request, res = response) => {
@@ -54,8 +54,8 @@ class CompanyController {
     try {
       const company = await CompanyModel.update(
         {
-          deleted:false,
-          deletedAt:null,
+          status: false,
+          deletedAt: null,
         },
         {
           where: {
@@ -73,8 +73,8 @@ class CompanyController {
     try {
       const company = await CompanyModel.update(
         {
-          deleted:true,
-          deletedAt:new Date()
+          status: true,
+          deletedAt: new Date(),
         },
         {
           where: {

@@ -11,6 +11,12 @@ const UserModel = {
   },
   email: {
     type: DataTypes.STRING(50),
+    allowNull: false,
+    unique: true, // esto hace que el campo sea único
+    validate: {
+      isEmail: true, // esto valida que el valor sea un email válido
+      notEmpty: true, // esto valida que el valor no esté vacío
+    },
   },
   password: {
     type: DataTypes.STRING(50),
@@ -21,7 +27,7 @@ const UserModel = {
   deletedAt:{
     type:DataTypes.DATE
   },
-  deleted:{
+  status:{
     type:DataTypes.BOOLEAN
   }
 };

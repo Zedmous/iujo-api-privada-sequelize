@@ -40,9 +40,6 @@ const CompanyModel = {
   },
   deletedAt:{
     type:DataTypes.DATE
-  },
-  deleted:{
-    type:DataTypes.BOOLEAN
   }
 };
 

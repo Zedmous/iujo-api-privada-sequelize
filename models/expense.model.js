@@ -11,6 +11,9 @@ ExpenseModel.init(
     amount: {
       type: DataTypes.NUMBER,
     },
+    company_id:{
+      type:DataTypes.NUMBER
+    },
     status: {
       type: DataTypes.BOOLEAN,
       default:true

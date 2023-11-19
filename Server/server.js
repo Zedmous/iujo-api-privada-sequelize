@@ -8,6 +8,7 @@ class Server {
 
         this.pre = "/api";
         this.paths = {
+            auths:this.pre+'/auth',
             users: this.pre + '/users',
             companies: this.pre + '/companies'
         };
@@ -29,7 +30,8 @@ class Server {
         this.app.use(express.static('public'));
     }
     routes() {
-        //this.app.use(this.paths.users,require('../routes/user.route'));
+        this.app.use(this.paths.auths,require('../routes/auth.route'));
+        this.app.use(this.paths.users,require('../routes/user.route'));
         this.app.use(this.paths.companies,require('../routes/company.route'));
     }
     listen() {
