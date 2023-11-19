@@ -11,7 +11,8 @@ class Server {
             auths:this.pre+'/auth',
             roles:this.pre+'/roles',
             users: this.pre + '/users',
-            companies: this.pre + '/companies'
+            companies: this.pre + '/companies',
+            expenses: this.pre + '/expenses',
         };
         //conectar a la BD
         this.conectarDB();
