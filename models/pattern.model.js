@@ -1,38 +1,33 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+const { DataTypes } = require("sequelize");
 
-class PatternModel extends Model {}
-
-PatternModel.init(
-  {
-    name: {
-      type: DataTypes.STRING,
-    },
-    width: {
-      type: DataTypes.NUMBER,
-    },
-    height: {
-      type: DataTypes.NUMBER,
-    },
-    size: {
-      type: DataTypes.STRING,
-    },
-    img: {
-      type: DataTypes.STRING,
-    },
-    garmenT_id: {
-      type: DataTypes.NUMBER,
-    },
-    status: {
-      type: DataTypes.BOOLEAN,
-      default:true
-    }
+const PatternModel = {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
   },
-  {
-    sequelize,
-    modelName: "pattern",
-    timestamps: false
-  }
-);
+  name: {
+    type: DataTypes.STRING(50),
+  },
+  width: {
+    type: DataTypes.NUMBER,
+  },
+  height: {
+    type: DataTypes.NUMBER,
+  },
+  size: {
+    type: DataTypes.STRING,
+  },
+  img: {
+    type: DataTypes.STRING,
+  },
+  garment_id: {
+    type: DataTypes.INTEGER,
+  },
+  status: {
+    type: DataTypes.BOOLEAN,
+    default: true,
+  },
+};
 
-module.exports = PatternModel
+module.exports = PatternModel;

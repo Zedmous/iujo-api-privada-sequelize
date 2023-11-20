@@ -1,15 +1,22 @@
 const { DataTypes } = require("sequelize");
 
-const RoleModel = {
+const ServiceModel = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
   name: {
-    type: DataTypes.STRING(50),
-    allowNull: false,
-    unique: true,
+    type: DataTypes.STRING(50)
+  },
+  retail_price: {
+    type: DataTypes.NUMBER
+  },
+  wholesale_price: {
+    type: DataTypes.NUMBER
+  },
+  tservice_id:{
+    type:DataTypes.INTEGER
   },
   deletedAt: {
     type: DataTypes.DATE,
@@ -17,7 +24,7 @@ const RoleModel = {
   status: {
     type: DataTypes.BOOLEAN,
     default: true,
-  }
+  },
 };
 
-module.exports = RoleModel;
+module.exports = ServiceModel;

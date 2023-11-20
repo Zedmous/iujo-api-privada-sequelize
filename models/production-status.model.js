@@ -1,24 +1,23 @@
 const { DataTypes } = require("sequelize");
 
-const ExpenseModel = {
+const ProductionStatusModel = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
   name: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
+    allowNull: false,
+    unique: true,
   },
-  amount: {
-    type: DataTypes.NUMBER,
-  },
-  company_id: {
-    type: DataTypes.INTEGER,
+  deletedAt: {
+    type: DataTypes.DATE,
   },
   status: {
     type: DataTypes.BOOLEAN,
     default: true,
-  }
+  },
 };
 
-module.exports = ExpenseModel;
+module.exports = ProductionStatusModel;

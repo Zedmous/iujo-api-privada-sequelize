@@ -1,4 +1,4 @@
-const { DataTypes, DATE } = require("sequelize");
+const { DataTypes } = require("sequelize");
 
 const UserModel = {
   id: {
@@ -22,13 +22,14 @@ const UserModel = {
     type: DataTypes.STRING(50),
   },
   role_id: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
   },
   deletedAt:{
     type:DataTypes.DATE
   },
   status:{
-    type:DataTypes.BOOLEAN
+    type: DataTypes.BOOLEAN,
+    default: true,
   }
 };
 
