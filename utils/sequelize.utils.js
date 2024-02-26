@@ -1,16 +1,15 @@
 const Sequelize = require("sequelize");
 const UserModel = require("../models/user.model");
-const CompanyModel = require("../models/company.model");
 const RoleModel = require("../models/role.model");
-const ExpenseModel = require("../models/expense.model");
+
 
 const url =
   process.env.NODE_ENV === "test"
     ? process.env.DATABASE_URL_TEST
     : process.env.DATABASE_URL;
-const db = new Sequelize("stylesDB", "ejnsilva", "8565203", {
-  dialect: "sqlite",
-  host: url,
+const db = new Sequelize("ecomoda", "root", null, {
+  dialect: "mysql",
+  host: 'localhost',
 });
 
 //Tables in DB
@@ -24,22 +23,12 @@ const User = db.define("users", UserModel, {
   modelName: "users",
   timestamps: true,
 });
-const Company = db.define("companies", CompanyModel, {
-  db,
-  modelName: "companies",
-  timestamps: true,
-});
-const Expense = db.define("expenses", ExpenseModel, {
-  db,
-  modelName: "expenses",
-  timestamps: true,
-});
+
 
 //relations
 Role.hasMany(User, {foreignKey: 'role_id'}); // Un usuario tiene muchos posts
 User.belongsTo(Role, {foreignKey: 'role_id'}); // Un post pertenece a un usuario
-Company.hasMany(Expense, {foreignKey: 'company_id'});
-Expense.belongsTo(Company, {foreignKey: 'company_id'});
+
 
 const syncModels = async () => {
   await db.sync({ alter: true })
@@ -55,8 +44,6 @@ syncModels();
 
 module.exports = {
   UserModel: User,
-  CompanyModel: Company,
   RoleModel: Role,
-  ExpenseModel: Expense,
   db,
 };

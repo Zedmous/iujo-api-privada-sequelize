@@ -11,8 +11,6 @@ class Server {
             auths:this.pre+'/auth',
             roles:this.pre+'/roles',
             users: this.pre + '/users',
-            companies: this.pre + '/companies',
-            expenses: this.pre + '/expenses',
         };
         //conectar a la BD
         this.conectarDB();
@@ -34,7 +32,6 @@ class Server {
     routes() {
         this.app.use(this.paths.auths,require('../routes/auth.route'));
         this.app.use(this.paths.users,require('../routes/user.route'));
-        this.app.use(this.paths.companies,require('../routes/company.route'));
     }
     listen() {
         this.app.listen(this.port, () => {
