@@ -1,6 +1,6 @@
 const { response } = require('express');
 const bcryptjs = require('bcryptjs');
-const { UserModel } = require('../utils/sequelize.utils')
+const { UserModel } = require('../config/sequelize.config')
 const { generarJWT } = require('../helpers/generar-jwt');
 
 

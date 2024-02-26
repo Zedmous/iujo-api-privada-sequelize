@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors');
-const { db } = require("../utils/sequelize.utils");
+const { db } = require("../config/sequelize.config");
 class Server {
     constructor() {
         this.app = express();
@@ -39,4 +39,5 @@ class Server {
         })
     }
 }
+
 module.exports = Server;
